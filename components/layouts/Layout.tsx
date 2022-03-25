@@ -15,6 +15,9 @@ export const Layout: FC<Props> = ({ children, title, pokemon }) => {
     <>
       <Head>
         <title>{ title || pokemon || 'Pokemon App' }</title>
+
+        <link rel="shortcut icon" href={`${origin}/img/favicon.png`} type="image/x-icon" />
+
         <meta name="author" content="AvyDev"/>
         <meta name="description" content={ pokemon ? `Info about Pokemon ${ pokemon ||  title || 'Pokemon App' } ` : 'Pokemon App'}/>
         <meta name="keywords" content={ `${pokemon || 'pokemon-app'}, pokemon, pokedex` }/>

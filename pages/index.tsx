@@ -24,7 +24,7 @@ const HomePage: NextPage<Props> = ({ pokemon }) => {
 
 export const getStaticProps: GetStaticProps = async (/*context*/) => {
 
-  const { data } = await pokeApi.get<PokemonListResponse>('/pokemon?limit=151')
+  const { data } = await pokeApi.get<PokemonListResponse>('/pokemon?limit=151') // 151 for kanto region, 251 for johto, 386 hoenn
   const baseURL = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world'
 
   const pokemon: SmallPokemon[] = data.results.map( (pkmn, i) => ({

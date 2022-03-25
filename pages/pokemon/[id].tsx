@@ -5,7 +5,6 @@ import { GetStaticProps, GetStaticPaths, NextPage } from 'next'
 
 import confetti from 'canvas-confetti';
 
-import { pokeApi } from '../../api';
 import { Layout } from '../../components/layouts'
 import { Pokemon } from '../../interfaces';
 import { getPokemonInfo, localFavorites } from '../../utils';
@@ -114,7 +113,7 @@ export const getStaticPaths: GetStaticPaths = async (ctx) => {
     paths: hundredFiftyFirst.map( id => ({
       params: { id }
     })),
-    fallback: false
+    fallback: 'blocking'
     // paths: [
     //   {
     //     params: {id: '1'}
@@ -130,11 +129,23 @@ export const getStaticPaths: GetStaticPaths = async (ctx) => {
 export const getStaticProps: GetStaticProps = async ({ params }) => {
 
   const { id } = params as { id: string };
+
+  const pokemon = await getPokemonInfo( id )
+
+  if ( !pokemon ) {
+    return {
+      redirect: {
+        destination: '/',   // redirect if pokemon doesn't exist
+        permanent: false,
+      }
+    }
+  }
   
   return {
     props: {
-      pokemon: await getPokemonInfo( id )
-    }
+      pokemon
+    },
+    revalidate: 86400,  // revalidate data every 24 hours (ISR)
   }
 }
 
