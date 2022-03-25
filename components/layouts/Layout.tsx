@@ -10,17 +10,17 @@ interface Props {
 const origin = (typeof window === 'undefined') ? '' : window.location.origin
 
 export const Layout: FC<Props> = ({ children, title, pokemon }) => {
-
+  
   return (
     <>
       <Head>
         <title>{ pokemon || title || 'Pokemon App' }</title>
         <meta name="author" content="AvyDev"/>
-        <meta name="description" content={ pokemon ? `Info about Pokemon ${ pokemon } ` : 'Pokemon App'}/>
-        <meta name="keywords" content={ `${pokemon}, pokemon, pokedex` }/>
+        <meta name="description" content={ pokemon ? `Info about Pokemon ${ pokemon ||  title || 'Pokemon App' } ` : 'Pokemon App'}/>
+        <meta name="keywords" content={ `${pokemon || 'pokemon-app'}, pokemon, pokedex` }/>
 
-        <meta property="og:title" content={`Info about ${ pokemon }`} />
-        <meta property="og:description" content={`This is the page about ${ pokemon }`} />
+        <meta property="og:title" content={ pokemon ? `Info about ${ pokemon ||  title || 'Pokemon App'  }` : 'Pokemon App'} />
+        <meta property="og:description" content={ pokemon ? `This is the page about ${ pokemon ||  title || 'Pokemon App' }` : 'Welcome to the Pokemon App'} />
         <meta property="og:image" content={`${origin}/img/banner.png`} />
       </Head>
 

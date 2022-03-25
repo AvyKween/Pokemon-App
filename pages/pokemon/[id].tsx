@@ -44,7 +44,7 @@ const PokemonPage: NextPage<Props> = ({ pokemon, pokemon: { id } }) => {
   }
 
   return (
-    <Layout title={`Pokemon App - ${Capitalize(pokemon.name)}`}>
+    <Layout title={`Pokemon App - ${Capitalize(pokemon.name)}`} pokemon={pokemon.name}>
       <Grid.Container css={{ marginTop: '5px' }} gap={ 2 }>
         <Grid xs={12} sm={4}>
           <Card hoverable css={{ padding: '30px' }}>

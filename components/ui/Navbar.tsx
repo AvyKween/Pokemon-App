@@ -31,7 +31,7 @@ export const Navbar = () => {
       <NextLink href='/' passHref>
         <Link css={{ display:'flex', alignItems:'center'}}>
           <Text color="#fff" h2>P</Text>
-          <Text color="#fff" h3>okemon</Text>
+          <Text color="#fff" h3>okemon!</Text>
         </Link>
       </NextLink>
 
